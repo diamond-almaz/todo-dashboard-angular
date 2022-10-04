@@ -1,0 +1,21 @@
+<div
+  cdkDropList
+  [cdkDropListData]="tasks"
+  class="example-list"
+  (cdkDropListDropped)="drop($event)"
+>
+<div class="example-box" *ngFor="let item of tasks; let i = index;" cdkDrag>
+    <input
+      [readonly]="getReadonly(taskStatus)"
+      #editableInputRef
+      [value]="item.description"
+      type="text"
+      (blur)="blurInput(i , taskStatus, editableInputRef.value)"
+    >
+    <div class="box">
+        <button mat-icon-button *ngFor="let btn of allowedButtonsOptions(taskStatus);" [color]="btn.color" (click)="btn.onClick(i, taskStatus)">
+            <mat-icon>{{ btn.matIcon }}</mat-icon>
+        </button>
+    </div>
+</div>
+</div>
