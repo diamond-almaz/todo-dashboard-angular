@@ -2,7 +2,6 @@
     <mat-form-field style="width: 100%;" appearance="outline">
         <mat-label>Task Name</mat-label>
         <input formControlName="item" matInput placeholder="Add task name">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
       <button mat-raised-button color="primary" [disabled]="todoForm.invalid" (click)="onAdd()">Add</button>  
 </form>

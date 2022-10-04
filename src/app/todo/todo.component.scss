@@ -10,6 +10,14 @@ mat-card {
   vertical-align: top;
 }
 
+.row {
+  height: 93vh;
+}
+
+.col-md-3 {
+  background-color: darkslateblue;
+  padding: 20px;
+}
 .col-md-9 {
   background: linear-gradient(0deg, #ee9ca7, #ffdde1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
