@@ -10,7 +10,7 @@
       #editableInputRef
       [value]="item.description"
       type="text"
-      (blur)="blurInput(i , taskStatus, editableInputRef.value)"
+      (blur)="changeTask(i , taskStatus, editableInputRef.value)"
     >
     <div class="box">
         <button mat-icon-button *ngFor="let btn of allowedButtonsOptions(taskStatus);" [color]="btn.color" (click)="btn.onClick(i, taskStatus)">

@@ -14,7 +14,7 @@ export class TodoItemComponent {
   @Input() taskStatus!: TaskStatus;
   @Input() drop!: (event: CdkDragDrop<ITask[]>) => void;
   @Output() deleteTask: EventEmitter<{i: number, status: TaskStatus}> = new EventEmitter();
-  @Input() blurInput!: (i: number, status: TaskStatus, newDescription: string) => void;
+  @Input() changeTask!: (i: number, status: TaskStatus, newDescription: string) => void;
   
 
   constructor() {}

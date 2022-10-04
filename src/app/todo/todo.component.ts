@@ -2,6 +2,7 @@ import { CdkDragDrop, CdkDragEnter, moveItemInArray, transferArrayItem } from '@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ITask, ITasks, TaskStatus } from '../model/task';
+import { TodoServicesService } from '../services/todo-services.service';
 
 @Component({
   selector: 'app-todo',
@@ -10,40 +11,29 @@ import { ITask, ITasks, TaskStatus } from '../model/task';
 })
 export class TodoComponent implements OnInit {
 
-  todoForm!: FormGroup;
-  tasks: ITasks = {
-    [TaskStatus.todo]: [],
-    [TaskStatus.inprogress]: [],
-    [TaskStatus.done]: [],
-  };
+  tasks!: ITasks;
+  passedChangeTask= this.changeTask.bind(this);
 
-  passedDeleteTask= this.deleteTask.bind(this);
-  passedBlurInput= this.blurInput.bind(this);
+  constructor(private todoServices: TodoServicesService) {
 
-  constructor(private fb: FormBuilder) {
-    this.todoForm = fb.group({
-      item: ['', Validators.required]
-    })
-   }
+    this.tasks = this.todoServices.tasks;
+  }
+
+  addTask(description: string) {
+    this.todoServices.addTask(description);
+
+  }
+  deleteTask({ i, status }: {i: number, status: TaskStatus}) {
+    this.todoServices.deleteTask(i, status);
+  }
+
+  changeTask(i: number, status: TaskStatus, newDescription: string) {
+    this.todoServices.changeTask(i, status, newDescription);
+  }
+
 
   ngOnInit(): void {
     console.log('ngOnInit')
-  }
-
-  addTask() {
-    this.tasks[TaskStatus.todo].push({
-      description: this.todoForm.value.item,
-    })
-
-    this.todoForm.reset();
-  }
-
-  deleteTask({i, status}: {i: number, status: TaskStatus}) {
-    this.tasks[status].splice(i, 1);
-  }
-
-  blurInput(i: number, status: TaskStatus, newDescription: string) {
-    this.tasks[status][i].description = newDescription;
   }
 
   drop(event: CdkDragDrop<ITask[]>) {

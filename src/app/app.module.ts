@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { TodoItemComponent } from './todo/todo-item/todo-item.component';
 import { KeysPipe } from './pipes/keys.pipe';
+import { AddTodoComponent } from './todo/add-todo/add-todo.component';
 
 
 
@@ -28,7 +29,8 @@ import { KeysPipe } from './pipes/keys.pipe';
     NavbarComponent,
     TodoComponent,
     TodoItemComponent,
-    KeysPipe
+    KeysPipe,
+    AddTodoComponent
   ],
   imports: [
     BrowserModule,
